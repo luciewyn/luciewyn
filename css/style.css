@@ -1,0 +1,532 @@
+/* --- 0. 基礎重置 --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Courier Prime', monospace;
+            background-color: #fff;
+            color: #000;
+            
+        }
+
+        /* --- 1. 首頁橫向畫廊 --- */
+        .gallery {
+            display: flex;
+            overflow-x: auto;
+            overflow-y: hidden;
+            height: 100vh;
+            scroll-snap-type: x mandatory; 
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .gallery::-webkit-scrollbar {
+            display: none;
+        }
+        .slide {
+            flex: 0 0 100vw; 
+            scroll-snap-align: start; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 60px; 
+        }
+        .project-image {
+            width: 75vw;
+            height: 70vh;
+            background-color: #f0f0f0; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: #999;
+            transition: transform 0.3s ease;
+        }
+        .project-image:hover {
+            transform: scale(1.02); 
+            cursor: pointer;
+        }
+
+        /* --- 2. 底部導覽列 (加入連動滑出動畫) --- */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            z-index: 100; 
+            /* 🔥 關鍵：加入跟 Info 面板一模一樣的滑順動畫 */
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        /* 🔥 關鍵：當加上 active 時，往上移動 (螢幕高度 - 自身高度 60px) 到最頂端 */
+        .bottom-bar.active {
+            transform: translateY(calc(-100vh + 60px));
+        }
+
+        .logo {
+            font-size: 24px;
+        }
+      .nav-btn {
+    background: none;
+    border: none;
+    font-family: 'Courier Prime', monospace; 
+    font-size: 24px;
+    cursor: pointer;
+    font-style: normal; /* 🔥 改成 normal 才正確喔！ */
+    margin-left: 0;     /* 保持為 0，這樣 Logo 才不會跑掉 */
+    text-decoration: none;
+    color: #000;
+}
+
+/* --- 🔥 新增這段來控制 Projects 和 Info 的距離 --- */
+.nav-links {
+    display: flex;
+    gap: 40px; /* 👈 這裡就是控制按鈕間距的魔法數字！隨便你調 (例如 20px, 40px, 60px) */
+}
+        .nav-btn:hover {
+            opacity: 0.6;
+        }
+
+        /* --- 3. 隱藏的資訊面板 (修改初始位置) --- */
+        .panel {
+            position: fixed;
+            /* 🔥 關鍵：預設藏在畫面正下方（螢幕高度 100vh 處） */
+            top: 100vh; 
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 60px); 
+            background-color: #fff;
+            z-index: 90;
+            /* 🔥 關鍵：與導覽列完全一致的動畫速度與曲線 */
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow-y: auto; 
+        }
+        
+        /* 🔥 關鍵：跟導覽列一起往上滑動同樣的距離 */
+        .panel.active {
+            transform: translateY(calc(-100vh + 60px));
+        }
+
+        /* --- 4. Info 內部文字排版 --- */
+.info-wrapper {
+    font-family: 'Courier Prime', monospace; 
+    width: 100%;
+    /* 左右 padding 與 bottom-bar 完全一致，達成完美左對齊 */
+    padding: 80px 30px; 
+    margin: 0 auto;
+    
+    /* 🔥 新增：將 wrapper 變成彈性盒子，並讓它至少佔滿整個面板的高度 */
+    display: flex;
+    flex-direction: column;
+    min-height: 100%; 
+}
+
+.info-bio {
+    max-width: 1000px;
+    font-size: 20px;
+    line-height: 1.4;
+    margin-bottom: 80px; /* 這會變成與底部清單的「最小間距」 */
+}
+
+.info-grid {
+    display: grid;
+    /* 第一欄固定 300px，剩下的空間兩欄平分 (1fr 1fr) */
+    grid-template-columns: 300px 1fr 1fr; 
+    gap: 40px;
+    margin-top: auto; 
+}
+        
+        .block {
+            margin-bottom: 40px;
+        }
+        
+        .info-grid h4 {
+            font-family: 'Courier Prime', monospace; 
+            font-size: 12px;
+            font-weight: bold; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            color: #333;
+        }
+        
+        .info-grid p, .info-grid a {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #000;
+            text-decoration: none;
+            margin-bottom: 4px;
+        }
+        
+        .info-grid a:hover {
+    text-decoration: none; /* 確保沒有底線 */
+    font-style: italic;    /* 滑鼠游標移過去時變成斜體 */
+}
+
+        /* --- 手機版 RWD 適應 --- */
+        @media (max-width: 768px) {
+            .project-image { width: 90vw; }
+            .info-wrapper { padding: 40px 20px; }
+            .info-bio { font-size: 18px; margin-bottom: 40px; }
+            .info-grid { grid-template-columns: 1fr; gap: 20px; } 
+            .bottom-bar { padding: 0 20px; } /* 手機版導覽列與內文對齊 */
+        }
+
+
+        /* --- Projects 目錄頁樣式 --- */
+
+/* 頂部導覽列 (目錄頁專用) */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    z-index: 100;
+    background-color: #fff;
+}
+
+/* --- Projects 目錄頁樣式 (背景圖片 + 同行分類) --- */
+
+/* 確保 body 背景透明，才看得到底層圖片 */
+.projects-page {
+    background-color: transparent;
+}
+
+/* --- 全域背景圖片層 (最底層) --- */
+.bg-preview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* 🔥 退到所有文字和背景的最後面 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* 預設白色背景 */
+    pointer-events: none; /* 確保不阻擋滑鼠點擊 */
+}
+
+.bg-preview img {
+    position: absolute;
+    
+    /* 🔥 關鍵修改：讓圖片自動抓取自己的原始長寬比例 */
+    width: auto;      
+    height: auto;     
+    
+    /* 🔥 設定最大界限，確保直式或橫式圖片都不會大到衝出螢幕 */
+    max-width: 65vw;  /* 最大寬度不超過螢幕寬度的 65% */
+    max-height: 80vh; /* 最大高度不超過螢幕高度的 80% */
+    
+    /* 確保內容以完整包含的方式顯示 */
+    object-fit: contain; 
+    
+    opacity: 0; 
+    transition: opacity 0.5s ease; 
+}
+
+.bg-preview img.show {
+    opacity: 1; /* JS 觸發顯示 */
+}
+
+/* 頂部導覽列 (目錄頁專用) */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    z-index: 100;
+    /* 背景透明，這樣圖片如果在頂部也能透出來 */
+    background-color: transparent; 
+}
+
+/* 主體：列表區塊 */
+.projects-directory {
+    padding: 120px 30px 40px 30px; 
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.project-list {
+    list-style: none;
+    width: 100%;
+}
+
+/* --- 每一列的設定 --- */
+.project-item {
+    position: relative;
+    display: flex;
+    justify-content: space-between; /*  讓左邊(標題)和右邊(分類)自動推到畫面兩側 */
+    align-items: baseline; /* 讓左右兩邊的文字底線切齊 */
+    font-size: 32px;
+    padding: 10px 0;
+    cursor: pointer;
+}
+/* 🔥 關鍵 ：新增這個隱形連結的樣式 */
+.full-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10; /* 確保它浮在最上層，蓋住文字，這樣滑鼠點擊才會觸發 */
+}
+
+/* 左側：年份與標題 */
+.item-left {
+    display: flex;
+    align-items: baseline;
+    gap: 40px; /* 年份與標題的間距 */
+}
+.item-left .year {
+    flex: 0 0 80px; /* 固定年份寬度，確保標題對齊 */
+}
+
+/* 右側：分類 */
+.item-right .category {
+    font-style: italic;
+    opacity: 0; /* 預設隱藏分類 */
+   
+}
+
+/* --- 滑鼠懸停效果 --- */
+.project-item:hover .item-left { font-style: italic; }
+.project-item:hover .item-right .category { opacity: 1; } /* 顯示該列的分類 */
+
+
+/* 手機版適應 */
+@media (max-width: 768px) {
+    .bg-preview img { display: none; } /* 手機隱藏背景大圖 */
+    .item-right .category { opacity: 1; font-size: 16px; } /* 手機直接顯示分類 */
+}
+
+/* =========================================
+   單一作品詳細頁 (Project Detail Page) 
+   ========================================= */
+
+.project-detail-page {
+    background-color: #fff;
+    /* 🔥 關鍵：底部預留 60px 空間，這樣滑到底部的黑色條才不會被導覽列蓋住 */
+    padding-bottom: 60px; 
+    overflow-x: hidden; 
+}
+
+/* 1. 左上角固定標題 */
+.project-header {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    z-index: 90;
+}
+.project-header h1 {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0;
+}
+
+/* 2. 中間滾動內容區 */
+.project-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 讓圖片在畫面置中 */
+    padding-top: 60px;  /* 避開上方的固定標題 */
+}
+
+/* 內容區的圖片容器 */
+.content-block {
+    margin-bottom:80px; /* 圖片與圖片之間的大量留白 */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* --- 所有作品圖片的通用設定 --- */
+.content-block img {
+    /* 1. 讓圖片根據原始比例縮放，不變形 */
+    width: auto;
+    height: auto;
+
+    /* 2. 限制寬度：不超過螢幕寬度的 85% (可依喜好調整) */
+    max-width: 85vw;
+
+    /* 3. 限制高度：不超過螢幕高度的 80% (這能防止直式圖片過長) */
+    max-height: 80vh;
+
+    /* 4. 確保圖片是以完整、不裁切的方式呈現 */
+    object-fit: contain;
+
+    /* 移除圖片下方的微小間隙 */
+    display: block;
+}
+
+/* 3. 滑到底部的黑底控制列 */
+.project-footer {
+    width: 100%;
+    background-color: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    /* margin-top: auto 確保它在內容的最下面 */
+}
+
+.project-footer a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    transition: opacity 0.3s ease;
+}
+
+.project-footer a:hover {
+    opacity: 0.6;
+    font-style: italic;
+}
+
+/* 手機版適應 */
+@media (max-width: 768px) {
+    .content-block img { max-width: 90vw; }
+    .project-header { top: 20px; left: 20px; }
+}
+
+/* =========================================
+   單一作品詳細頁：首圖與箭頭設計
+   ========================================= */
+
+/* 讓錨點滑動時像奶油一樣滑順 (不需寫 JS，原生 CSS 就能做到！) */
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- 第一張圖的首圖區塊 (優化高度與箭頭可見度) --- */
+.first-block {
+    position: relative; 
+    /* 確保整個區塊至少等於視窗高度，扣掉底部導覽列 */
+    min-height: calc(100vh - 60px); 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 圖片垂直置中 */
+    align-items: center;
+    
+    /* 🔥 增加底部間距，把整個內容（含箭頭）往上提 */
+    padding-top: 60px;
+    padding-bottom: 120px; 
+    margin-bottom: 50px;
+}
+
+.first-block img {
+    width: 75vw; 
+    max-width: 1400px;
+    height: auto; 
+    
+    /* 🔥 關鍵：稍微縮小圖片的最大高度限制 (從 80vh 改為 65vh) */
+    /* 這樣能保證在筆電螢幕上，圖片下方一定有空間留給箭頭 */
+    max-height: 75vh; 
+    
+    object-fit: contain; 
+}
+
+/* --- 箭頭微調 --- */
+.scroll-down-arrow {
+    position: relative; 
+    /* 🔥 縮小圖片與箭頭的間距，確保它們在同一個視線範圍內 */
+    margin-top: 30px; 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.scroll-down-arrow svg {
+    /* 如果覺得箭頭太小被忽視，可以稍微加大 */
+    width: 32px;
+    height: 32px;
+    stroke: #000;
+}
+
+.scroll-down-arrow:hover {
+    opacity: 0.5;
+    /* 因為現在沒有 transform: translateX(-50%) 了，直接位移即可 */
+    transform: translateY(5px); 
+}
+
+/* =========================================
+   作品詳細頁：文字說明區塊 (INFO)
+   ========================================= */
+
+.project-description {
+    /* 🔥 新增這行：告訴瀏覽器在滾動到這裡時，上方要預留 120px 的安全距離 */
+    scroll-margin-top: 120px; 
+
+    max-width: 800px; 
+    margin: 0 auto 150px auto; 
+    padding: 0 30px;
+    text-align: center; 
+    font-size: 16px;
+    line-height: 1.6; 
+}
+
+/* 針對段落的間距微調 */
+.project-description p {
+    margin-bottom: 25px;
+}
+
+/* 標題 (INFO) */
+.project-description .info-title {
+    margin-bottom: 20px;
+    font-style: normal;
+}
+
+/* 連結區塊 */
+.project-description .info-links {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.project-description .info-links a {
+    color: #000;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 15px;
+    transition: opacity 0.3s ease, font-style 0.3s ease;
+}
+
+.project-description .info-links a:hover {
+    opacity: 0.6;
+    font-style: italic; /* 滑鼠移過去變斜體，延續你網站的設計語彙 */
+}
+
+/* 底部小註解 */
+.project-description .footnote {
+    font-size: 16px;
+    color: #666;
+    margin-top: 20px;
+}
+
+/* 手機版微調 */
+@media (max-width: 768px) {
+    .project-description {
+        font-size: 14px;
+        margin-bottom: 100px;
+    }
+}

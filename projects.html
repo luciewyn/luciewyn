@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="projects-page">
+
+    <!-- 全域背景圖片層 (在最底層) -->
+    <div id="background-preview" class="bg-preview">
+        <img id="preview-img" src="" alt="">
+    </div>
+
+    <!-- 頂部導覽列 -->
+   <!-- 頂部導覽列 -->
+    <nav class="top-bar">
+        <div class="logo">
+            <a href="index.html" class="nav-btn" style="margin-left: 0;">Lucie Lin</a>
+        </div>
+        
+        <div class="nav-links">
+            <a href="projects.html" class="nav-btn" style="opacity: 0.5; pointer-events: none;">Projects</a>
+            
+            <!-- 🔥 關鍵：把按鈕換成超連結，導向 info.html -->
+            <a href="info.html" class="nav-btn">Info</a>
+        </div>
+    </nav>
+
+    <!-- 單欄全幅列表 -->
+    <main class="projects-directory">
+        <ul class="project-list">
+            <!-- 每一個 project-item 包含 左(年份+標題) 和 右(分類) -->
+            <li class="project-item" data-image="assets/images/01_gratislove/01.jpg">
+                <a href="projects/01_gratislove.html" class="full-link"></a>
+                <div class="item-left">
+                    <span class="year">2026</span>
+                    <span class="title">GRATIS LOVE Cooking in Minutes</span>
+                </div>
+                <div class="item-right">
+                    <span class="category">Publication</span>
+                </div>
+            </li>
+
+            <li class="project-item" data-image="assets/images/02_smallcameras/01.jpg">
+                <a href="projects/02_smallcameras.html" class="full-link"></a>
+                <div class="item-left">
+                    <span class="year">2025</span>
+                    <span class="title">Small Cameras Operation</span>
+                </div>
+                <div class="item-right">
+                    <span class="category">Collective</span>
+                </div>
+            </li>
+            
+            <li class="project-item" data-image="assets/images/03_ensembale/01.jpg">
+                <div class="item-left">
+                    <span class="year">2026</span>
+                    <span class="title">Ensembâle Sozialpreis Region Basel</span>
+                </div>
+                <div class="item-right">
+                    <span class="category">Identity</span>
+                </div>
+            </li>
+            
+            <li class="project-item" data-image="assets/images/04_kunstmuseum/04.jpg">
+                <a href="projects/04_kunstmuesum.html" class="full-link"></a>
+                <div class="item-left">
+                    <span class="year">2025</span>
+                    <span class="title">What's on Your Mind?</span>
+                </div>
+                <div class="item-right">
+                    <span class="category">Innovation</span>
+                </div>
+            </li>
+
+            <li class="project-item" data-image="assets/images/07_howtostayalive/01.jpg">
+                <a href="projects/07_howtostayalive.html" class="full-link"></a>
+                <div class="item-left">
+                    <span class="year">2025</span>
+                    <span class="title">How to Stay Alive</span>
+                </div>
+                <div class="item-right">
+                    <span class="category">Publication</span>
+                </div>
+            </li>
+
+             <li class="project-item" data-image="assets/images/">
+                <div class="item-left">
+                    <span class="year">2025</span>
+                    <span class="title">Variable Font</span>
+                </div>
+                <div class="item-right">
+                    <span class="category">Font</span>
+                </div>
+            </li>
+
+            <li class="project-item" data-image="assets/images/08_/01.png">
+                <div class="item-left">
+                    <span class="year">2025</span>
+                    <span class="title"> </span>
+                </div>
+                <div class="item-right">
+                    <span class="category">Advertising</span>
+                </div>
+            </li>
+
+             <li class="project-item" data-image="assets/images/06_meta/01.jpg">
+                <!-- 🔥 新增這行隱形連結 -->
+                <a href="projects/06_meta.html" class="full-link"></a>
+
+                <div class="item-left">
+                    <span class="year">2024</span>
+                    <span class="title">Metamorphosis Morrow in the Works</span>
+                </div>
+                <div class="item-right">
+                    <span class="category">Exhibition</span>
+                </div>
+            </li>
+
+            <li class="project-item" data-image="assets/images/11_oneofakind/cup.gif">
+                <div class="item-left">
+                    <span class="year">2024</span>
+                    <span class="title">One of a Kind Cup</span>
+                </div>
+                <div class="item-right">
+                    <span class="category">Tools</span>
+                </div>
+            </li>
+
+            <li class="project-item" data-image="assets/images/05_authorship/01.jpg">
+                <div class="item-left">
+                    <span class="year">2024</span>
+                    <span class="title">Authorship</span>
+                </div>
+                <div class="item-right">
+                    <span class="category">Poster</span>
+                </div>
+            </li>
+
+            <li class="project-item" data-image="assets/images/">
+                <div class="item-left">
+                    <span class="year">2022</span>
+                    <span class="title">Social Vacuum</span>
+                </div>
+                <div class="item-right">
+                    <span class="category">Illustration</span>
+                </div>
+            </li>
+
+
+        </ul>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
