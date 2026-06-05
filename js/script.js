@@ -1,54 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ==========================================
-// 首頁：隨機縮圖生成器
+   // ==========================================
+// 首頁：滑動洗牌縮圖生成器 (FLIP 動畫技術)
 // ==========================================
 
-// 1. 建立你的專案資料庫 (包含圖片路徑與要連結的網址)
 const PORTFOLIO_PROJECTS = [
-  
     { img: 'assets/images/01_gratislove/opencall.gif', url: 'projects/01_gratislove.html', title: 'GRATIS LOVE' },
     { img: 'assets/images/01_gratislove/gratisbox.jpg', url: 'projects/01_gratislove.html', title: 'GRATIS LOVE' },
-    { img: 'assets/images/01_gratislove/05.jpg', url: 'projects/01_gratislove.html', title: 'GRATIS LOVE' },
+    { img: 'assets/images/01_gratislove/05.jpg', url: 'projects/01_gratislove.html', title: 'GRATIS LOVE', hasShadow: true },
 
     { img: 'assets/images/02_smallcameras/mango.jpg', url: 'projects/02_smallcameras.html', title: 'smallcameras' },
-    
 
-
-    { img: 'assets/images/03_ensembale/web.gif', url: 'projects/03_ensembale.html', title: 'ensembale' },
+    { img: 'assets/images/03_ensembale/web.gif', url: 'projects/03_ensembale.html', title: 'ensembale' , hasShadow: true},
 
     { img: 'assets/images/04_kunstmuseum/flyer.jpg', url: 'projects/04_kunstmuseum.html', title: 'What’s on your mind?' },
-    
-
     { img: 'assets/images/05_authorship/001.jpg', url: 'projects/05_authorship.html', title: 'Poster' },
-
     { img: 'assets/images/06_meta/0001.jpg', url: 'projects/06_meta.html', title: 'Metamorphosis' },
     { img: 'assets/images/06_meta/08.jpg', url: 'projects/06_meta.html', title: 'Metamorphosis' },
-
     { img: 'assets/images/07_howtostayalive/cover.jpg', url: 'projects/07_howtostayalive.html', title: 'How to Stay Alive' },
     { img: 'assets/images/07_howtostayalive/04.jpg', url: 'projects/07_howtostayalive.html', title: 'How to Stay Alive' },
     { img: 'assets/images/07_howtostayalive/tag.jpg', url: 'projects/07_howtostayalive.html', title: 'How to Stay Alive' },
-    
     { img: 'assets/images/08_creditcookbook/01.png', url: 'projects/08_creditcookbook.html', title: 'Credit Cookbook' },
-
-     { img: 'assets/images/09_variablefont/002.jpg', url: 'projects/09_gradshow.html', title: 'NKNU' },
-      { img: 'assets/images/09_variablefont/001.jpg', url: 'projects/09_gradshow.html', title: 'NKNU' },
-      { img: 'assets/images/09_variablefont/006.jpg', url: 'projects/09_gradshow.html', title: 'NKNU' },
-
-
-      { img: 'assets/images/10_illustration/05.gif', url: 'projects/10_illustration.html', title: 'illustration' },
-    
-
+    { img: 'assets/images/09_variablefont/002.jpg', url: 'projects/09_gradshow.html', title: 'NKNU' },
+    { img: 'assets/images/09_variablefont/001.jpg', url: 'projects/09_gradshow.html', title: 'NKNU' },
+    { img: 'assets/images/09_variablefont/006.jpg', url: 'projects/09_gradshow.html', title: 'NKNU' },
+    { img: 'assets/images/10_illustration/05.gif', url: 'projects/10_illustration.html', title: 'illustration' },
     { img: 'assets/images/11_oneofakind/pottery.gif', url: 'projects/11_oneofakind.html', title: 'Pottery' },
-    
-    
-
-    // 👇 在這裡繼續新增你的其他專案...
-    // { img: '圖片路徑', url: '專案網址', title: '專案名稱' }
 ];
 
-// 2. 隨機洗牌陣列的函數 (Fisher-Yates Shuffle 演算法)
 function shuffleArray(array) {
-    let shuffled = [...array]; // 複製一份，避免改到原資料
+    let shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -56,28 +36,76 @@ function shuffleArray(array) {
     return shuffled;
 }
 
-// 修改後的程式碼：加入隨機尺寸邏輯
-function renderRandomGrid() {
+// 1. 初始化網格 (只在頁面載入時執行一次，把 HTML 建立起來)
+function initGrid() {
     const grid = document.getElementById('thumbnail-grid');
     if (!grid) return; 
 
-    const randomProjects = shuffleArray(PORTFOLIO_PROJECTS);
-    
-    // 🔥 定義我們剛剛在 CSS 寫好的三種尺寸
     const sizes = ['size-s', 'size-m', 'size-l'];
+    const randomProjects = shuffleArray(PORTFOLIO_PROJECTS);
 
     grid.innerHTML = randomProjects.map(proj => {
-        // 隨機抽取一個尺寸 class (0, 1, 或 2)
         const randomSizeClass = sizes[Math.floor(Math.random() * sizes.length)];
         
-        // 把抽到的尺寸 class 加到 <a> 標籤裡面
+        // 🔥 判斷邏輯：如果這張圖有 hasShadow，就給它 'with-shadow' 這個 class，否則留空
+        const shadowClass = proj.hasShadow ? 'with-shadow' : '';
+
         return `
-            <a href="${proj.url}" class="thumb-item ${randomSizeClass}">
+            <a href="${proj.url}" class="thumb-item ${randomSizeClass} ${shadowClass}">
                 <img src="${proj.img}" alt="${proj.title}">
             </a>
         `;
     }).join('');
 }
+
+// 2. 執行「滑動洗牌」動畫 (FLIP 技巧)
+function animateShuffle() {
+    const grid = document.getElementById('thumbnail-grid');
+    if (!grid) return;
+
+    // 抓取畫面上所有的縮圖元素
+    const items = Array.from(grid.children);
+
+    // 【First】記錄洗牌前，每個元素在畫面上的 X, Y 座標
+    const firstPositions = items.map(item => item.getBoundingClientRect());
+
+    // 【洗牌】將 DOM 元素打亂，重新塞回網格中 (此時瀏覽器已經改變了它們的位置)
+    const shuffledItems = shuffleArray(items);
+    shuffledItems.forEach(item => grid.appendChild(item));
+
+    // 【Last】記錄洗牌後，每個元素的新 X, Y 座標
+    const lastPositions = items.map(item => item.getBoundingClientRect());
+
+    // 【Invert & Play】計算座標差值，讓它們滑動過去
+    items.forEach((item, index) => {
+        const first = firstPositions[index];
+        const last = lastPositions[index];
+
+        const deltaX = first.left - last.left;
+        const deltaY = first.top - last.top;
+
+        // Invert: 瞬間把它偷偷移回原本的位置 (不帶動畫)
+        item.style.transition = 'none';
+        item.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+
+        // Play: 觸發瀏覽器重繪後，啟動動畫讓它滑向新位置
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                // 設定 0.8 秒的滑動動畫，cubic-bezier 讓滑動有流暢的加減速感
+                item.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
+                item.style.transform = 'translate(0, 0)';
+            });
+        });
+    });
+}
+
+// 執行初始化，把圖片放上去
+initGrid();
+
+// 設定計時器：每 5 秒觸發一次滑動洗牌
+setInterval(animateShuffle, 7000);
+
+
 renderRandomGrid();
     // ==========================================
     // 1. Info 面板滑出/收起邏輯 (支援多個按鈕觸發)
