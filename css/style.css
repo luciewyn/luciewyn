@@ -220,19 +220,16 @@
 }
 
 .bg-preview img {
-    position: absolute;
+   position: absolute;
     
-    /* 🔥 關鍵修改：讓圖片自動抓取自己的原始長寬比例 */
-    width: auto;      
-    height: auto;     
+    /* 1. 設定固定的寬度基準 */
+    width: 35vw;       
+    min-width: 300px;  /* 確保螢幕縮小也不會太小 */
+    max-width: 500px;  /* 確保大螢幕不會過度放大 */
     
-    /* 🔥 設定最大界限，確保直式或橫式圖片都不會大到衝出螢幕 */
-    max-width: 65vw;  /* 最大寬度不超過螢幕寬度的 65% */
-    max-height: 80vh; /* 最大高度不超過螢幕高度的 80% */
     
-    /* 確保內容以完整包含的方式顯示 */
-    object-fit: contain; 
-    
+    /* 3. 🔥 關鍵：使用 cover 確保圖片填滿這個固定框框，不會被壓扁或拉長 */
+    object-fit: cover; 
     opacity: 0; 
     transition: opacity 0.5s ease; 
 }
@@ -278,6 +275,7 @@
     font-size: 32px;
     padding: 10px 0;
     cursor: pointer;
+    
 }
 /* 🔥 關鍵 ：新增這個隱形連結的樣式 */
 .full-link {
@@ -523,6 +521,84 @@ html {
     margin-top: 20px;
 }
 
+/* =========================================
+   首頁：隨機縮圖瀑布流 (Masonry Grid)
+   ========================================= */
+
+/* =========================================
+   首頁：編輯式隨機網格 (Editorial Grid)
+   ========================================= */
+
+.thumbnail-grid {
+    /* 使用 Flexbox 允許圖片自動換行、置中並錯落排列 */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* 讓圖片集中在畫面中間散開 */
+    align-items: center;     /* 垂直方向也隨機置中對齊 */
+    
+    /* 🔥 關鍵：加大圖片之間的縫隙，創造極簡的呼吸感 */
+    gap: 40px 40px; /* 上下間距 80px，左右間距 60px */
+    
+    padding: 20px 30px 120px 30px; 
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+/* 圖片容器的基礎設定 */
+.thumb-item {
+    display: block;
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.thumb-item:hover {
+    opacity: 0.6;
+}
+
+.thumb-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* =========================================
+   🔥 準備給 JS 隨機抽取的尺寸階級 (微妙變化版)
+   ========================================= */
+
+/* 偏小一點的中圖 */
+.size-s { 
+    width: 16vw; 
+    min-width: 220px; 
+    max-width: 250px; 
+}
+
+/* 基準中圖 */
+.size-m { 
+    width: 19vw; 
+    min-width: 250px;
+    max-width: 290px; 
+}
+
+/* 偏大一點的中圖 */
+.size-l { 
+    width: 22vw; 
+    min-width: 280px;
+    max-width: 330px; 
+}
+
+/* 手機版適應：全部變回單欄大圖 */
+@media (max-width: 768px) {
+    .thumbnail-grid {
+        gap: 60px;
+        padding: 100px 20px;
+    }
+    .size-s, .size-m, .size-l {
+        width: 100%;
+        max-width: none;
+    }
+}
 /* 手機版微調 */
 @media (max-width: 768px) {
     .project-description {
