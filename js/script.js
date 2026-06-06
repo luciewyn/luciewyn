@@ -21,7 +21,7 @@ const PORTFOLIO_PROJECTS = [
     { img: 'assets/images/07_howtostayalive/tag.jpg', url: 'projects/07_howtostayalive.html', title: 'How to Stay Alive' },
     { img: 'assets/images/08_creditcookbook/01.png', url: 'projects/08_creditcookbook.html', title: 'Credit Cookbook' },
     { img: 'assets/images/09_variablefont/002.jpg', url: 'projects/09_gradshow.html', title: 'NKNU' },
-    { img: 'assets/images/09_variablefont/001.jpg', url: 'projects/09_gradshow.html', title: 'NKNU' },
+    { img: 'assets/images/09_variablefont/poster.jpg', url: 'projects/09_gradshow.html', title: 'NKNU' },
     { img: 'assets/images/09_variablefont/006.jpg', url: 'projects/09_gradshow.html', title: 'NKNU' },
     { img: 'assets/images/10_illustration/05.gif', url: 'projects/10_illustration.html', title: 'illustration' },
     { img: 'assets/images/11_oneofakind/pottery.gif', url: 'projects/11_oneofakind.html', title: 'Pottery' },
