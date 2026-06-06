@@ -321,7 +321,7 @@
    單一作品詳細頁 (Project Detail Page) 
    ========================================= */
 .cover-video {
-    width: 60%;
+    width: 55%;
     height: auto;
     display: block;
     border-radius: 8px;
@@ -445,7 +445,7 @@ html {
     align-items: center;
     
     /* 🔥 增加底部間距，把整個內容（含箭頭）往上提 */
-    padding-top: 60px;
+    padding-top: 40px;
     padding-bottom: 120px; 
     margin-bottom: 50px;
 }
