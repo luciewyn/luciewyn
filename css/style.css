@@ -259,6 +259,8 @@
     padding: 120px 30px 40px 30px; 
     height: 100vh;
     overflow-y: auto;
+    position: relative; 
+    z-index: 10;
 }
 
 .project-list {
