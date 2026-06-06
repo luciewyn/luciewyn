@@ -620,8 +620,14 @@ html {
 .marquee-wrapper:hover .marquee-track {
     animation-play-state: paused;
 }
+@font-face {
+    font-family: 'HelvEatica';
+    src: url("../assets/images/07_howtostayalive/HelvEatica-Regular.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
-/* 3. 文字本體：套用你的字體 */
 .marquee-text {
     /* 🔥 換成你要展示的字體名稱 */
     font-family: 'HelvEatica', sans-serif; 

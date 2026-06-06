@@ -5,23 +5,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const PORTFOLIO_PROJECTS = [
     { img: 'assets/images/01_gratislove/opencall.gif', url: 'projects/01_gratislove.html', title: 'GRATIS LOVE' },
-    { img: 'assets/images/01_gratislove/gratisbox.jpg', url: 'projects/01_gratislove.html', title: 'GRATIS LOVE' },
+    { img: 'assets/images/01_gratislove/notebook.jpg', url: 'projects/01_gratislove.html', title: 'GRATIS LOVE' },
     { img: 'assets/images/01_gratislove/05.jpg', url: 'projects/01_gratislove.html', title: 'GRATIS LOVE', hasShadow: true },
 
     { img: 'assets/images/02_smallcameras/mango.jpg', url: 'projects/02_smallcameras.html', title: 'smallcameras' },
 
     { img: 'assets/images/03_ensembale/web.gif', url: 'projects/03_ensembale.html', title: 'ensembale' , hasShadow: true},
 
-    { img: 'assets/images/04_kunstmuseum/flyer.jpg', url: 'projects/04_kunstmuseum.html', title: 'What’s on your mind?' },
+    { img: 'assets/images/04_kunstmuseum/flyer.png', url: 'projects/04_kunstmuseum.html', title: 'What’s on your mind?' },
     { img: 'assets/images/05_authorship/001.jpg', url: 'projects/05_authorship.html', title: 'Poster' },
     { img: 'assets/images/06_meta/0001.jpg', url: 'projects/06_meta.html', title: 'Metamorphosis' },
+     { img: 'assets/images/06_meta/11.jpg', url: 'projects/06_meta.html', title: 'Metamorphosis' },
     { img: 'assets/images/06_meta/08.jpg', url: 'projects/06_meta.html', title: 'Metamorphosis' },
     { img: 'assets/images/07_howtostayalive/cover.jpg', url: 'projects/07_howtostayalive.html', title: 'How to Stay Alive' },
-    { img: 'assets/images/07_howtostayalive/04.jpg', url: 'projects/07_howtostayalive.html', title: 'How to Stay Alive' },
-    { img: 'assets/images/07_howtostayalive/tag.jpg', url: 'projects/07_howtostayalive.html', title: 'How to Stay Alive' },
+    { img: 'assets/images/07_howtostayalive/07.jpg', url: 'projects/07_howtostayalive.html', title: 'How to Stay Alive' },
+    { img: 'assets/images/07_howtostayalive/tag.png', url: 'projects/07_howtostayalive.html', title: 'How to Stay Alive' },
+
     { img: 'assets/images/08_creditcookbook/01.png', url: 'projects/08_creditcookbook.html', title: 'Credit Cookbook' },
-    { img: 'assets/images/09_variablefont/002.jpg', url: 'projects/09_gradshow.html', title: 'NKNU' },
-    { img: 'assets/images/09_variablefont/poster.jpg', url: 'projects/09_gradshow.html', title: 'NKNU' },
+    { img: 'assets/images/09_variablefont/002.png', url: 'projects/09_gradshow.html', title: 'NKNU' },
+    { img: 'assets/images/09_variablefont/poster.png', url: 'projects/09_gradshow.html', title: 'NKNU' },
     { img: 'assets/images/09_variablefont/006.jpg', url: 'projects/09_gradshow.html', title: 'NKNU' },
     { img: 'assets/images/10_illustration/05.gif', url: 'projects/10_illustration.html', title: 'illustration' },
     { img: 'assets/images/11_oneofakind/pottery.gif', url: 'projects/11_oneofakind.html', title: 'Pottery' },
