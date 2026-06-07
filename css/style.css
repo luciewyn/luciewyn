@@ -199,6 +199,8 @@
 
 /* --- Projects 目錄頁樣式 (背景圖片 + 同行分類) --- */
 
+
+
 /* 確保 body 背景透明，才看得到底層圖片 */
 .projects-page {
     background-color: transparent;
@@ -221,13 +223,10 @@
 
 .bg-preview img {
    position: absolute;
-    
     /* 1. 設定固定的寬度基準 */
     width: 35vw;       
     min-width: 300px;  /* 確保螢幕縮小也不會太小 */
-    max-width: 500px;  /* 確保大螢幕不會過度放大 */
-    
-    
+    max-width: 500px;  /* 確保大螢幕不會過度放大 */  
     /* 3. 🔥 關鍵：使用 cover 確保圖片填滿這個固定框框，不會被壓扁或拉長 */
     object-fit: cover; 
     opacity: 0; 

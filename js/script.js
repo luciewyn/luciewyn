@@ -8,7 +8,9 @@ const PORTFOLIO_PROJECTS = [
     { img: 'assets/images/01_gratislove/notebook.jpg', url: 'projects/01_gratislove.html', title: 'GRATIS LOVE' },
     { img: 'assets/images/01_gratislove/05.jpg', url: 'projects/01_gratislove.html', title: 'GRATIS LOVE', hasShadow: true },
 
-    { img: 'assets/images/02_smallcameras/mango.jpg', url: 'projects/02_smallcameras.html', title: 'smallcameras' },
+    
+    { img: 'assets/images/02_smallcameras/mango.gif', url: 'projects/02_smallcameras.html', title: 'smallcameras' },
+      { img: 'assets/images/02_smallcameras/eye.png', url: 'projects/02_smallcameras.html', title: 'smallcameras' },
 
     { img: 'assets/images/03_ensembale/web.gif', url: 'projects/03_ensembale.html', title: 'ensembale' , hasShadow: true},
 
@@ -20,7 +22,6 @@ const PORTFOLIO_PROJECTS = [
     { img: 'assets/images/07_howtostayalive/cover.jpg', url: 'projects/07_howtostayalive.html', title: 'How to Stay Alive' },
     { img: 'assets/images/07_howtostayalive/07.jpg', url: 'projects/07_howtostayalive.html', title: 'How to Stay Alive' },
     { img: 'assets/images/07_howtostayalive/tag.png', url: 'projects/07_howtostayalive.html', title: 'How to Stay Alive' },
-
     { img: 'assets/images/08_creditcookbook/01.png', url: 'projects/08_creditcookbook.html', title: 'Credit Cookbook' },
     { img: 'assets/images/09_variablefont/002.png', url: 'projects/09_gradshow.html', title: 'NKNU' },
     { img: 'assets/images/09_variablefont/poster.png', url: 'projects/09_gradshow.html', title: 'NKNU' },

@@ -70,15 +70,21 @@
         <!-- --- 第二張圖開始 --- -->
 
         <div class="content-block">
-            <iframe width="1024" height="500" src="https://www.youtube.com/embed/hCgHkhg8Syk?si=42Cb1ZBWiyqqpytC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+       <video 
+    id="scrollVideo"
+    src="../assets/images/02_smallcameras/trailer.mp4" 
+    controls
+    playsinline
+    class="cover-video">
+</video>
         </div>
 
         <div class="content-block">
             <img src="../assets/images/02_smallcameras/01.jpg" alt="Image 2">
-            <img src="../assets/images/02_smallcameras/mango.jpg" alt="Image 2">
         </div>
 
         <div class="content-block">
+            <img src="../assets/images/02_smallcameras/07.jpg" alt="Image 2">
             <img src="../assets/images/02_smallcameras/03.jpg" alt="Image 2">
             <img src="../assets/images/02_smallcameras/04.jpg" alt="Image 2">
             <img src="../assets/images/02_smallcameras/05.jpg" alt="Image 2">
@@ -106,5 +112,36 @@
 
 
     <script src="../js/script.js"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    // 1. 取得要觀察的影片元素
+    const video = document.getElementById("scrollVideo");
+
+    // 2. 設定觀察條件
+    const options = {
+        root: null,         // 預設為瀏覽器視窗 (Viewport)
+        rootMargin: "0px",  // 視窗的邊界延伸
+        threshold: 0.5      // 觸發比例：0.5 代表影片有 50% 進入畫面時才觸發
+    };
+
+    // 3. 建立觀察器 (Observer)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // 當影片進入畫面 (達到 threshold 設定的 50%)，開始播放
+                video.play().catch(error => {
+                    console.log("瀏覽器阻擋了自動播放:", error);
+                });
+            } else {
+                // 當影片離開畫面時暫停，這樣可以節省使用者的電腦/手機效能
+                video.pause();
+            }
+        });
+    }, options);
+
+    // 4. 指派觀察器去盯著這個影片
+    observer.observe(video);
+});
+</script>
 </body>
 </html>
