@@ -15,7 +15,7 @@ const PORTFOLIO_PROJECTS = [
     { img: 'assets/images/03_ensembale/web.gif', url: 'projects/03_ensembale.html', title: 'ensembale' , hasShadow: true},
 
     { img: 'assets/images/04_kunstmuseum/flyer.png', url: 'projects/04_kunstmuseum.html', title: 'What’s on your mind?' },
-    { img: 'assets/images/05_authorship/001.jpg', url: 'projects/05_authorship.html', title: 'Poster' },
+    { img: 'assets/images/05_authorship/00.png', url: 'projects/05_authorship.html', title: 'Poster' },
     { img: 'assets/images/06_meta/0001.jpg', url: 'projects/06_meta.html', title: 'Metamorphosis' },
      { img: 'assets/images/06_meta/11.jpg', url: 'projects/06_meta.html', title: 'Metamorphosis' },
     { img: 'assets/images/06_meta/08.jpg', url: 'projects/06_meta.html', title: 'Metamorphosis' },
