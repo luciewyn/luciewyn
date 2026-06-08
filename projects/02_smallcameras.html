@@ -110,6 +110,47 @@
     </div>
 </nav>
 
+<img src="../assets/images/02_smallcameras/eye.png" id="bouncing-logo" alt="floating logo" style="position: fixed !important; top: 0px; left: 0px; width: 100px !important; z-index: 99999 !important; pointer-events: none;">
+
+        <script>
+          setTimeout(function() {
+            const img = document.getElementById('bouncing-logo');
+            if (!img) return; 
+
+            let x = 50; 
+            let y = 50;
+            let speedX = 2.5; 
+            let speedY = 2.5;
+            let rotation = 0;
+            let rotationSpeed = 2; 
+
+            function animate() {
+              const imgWidth = img.offsetWidth || 100;
+              const imgHeight = img.offsetHeight || 100;
+              const windowWidth = window.innerWidth;
+              const windowHeight = window.innerHeight;
+
+              x += speedX;
+              y += speedY;
+              rotation += rotationSpeed;
+
+              // 碰到邊界時反彈
+              if (x + imgWidth >= windowWidth || x <= 0) {
+                speedX = -speedX;
+              }
+              if (y + imgHeight >= windowHeight || y <= 0) {
+                speedY = -speedY;
+              }
+
+              img.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+              requestAnimationFrame(animate);
+            }
+
+            animate();
+          }, 500); 
+        </script>
+        <!-- 眼球特效結束 -->
+
 
     <script src="../js/script.js"></script>
     <script>
