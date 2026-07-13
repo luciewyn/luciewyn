@@ -9,7 +9,7 @@ const PORTFOLIO_PROJECTS = [
     { img: 'assets/images/01_gratislove/05.jpg', url: 'projects/01_gratislove.html', title: 'GRATIS LOVE', hasShadow: true },
 
     
-    { img: 'assets/images/02_smallcameras/mango.gif', url: 'projects/02_smallcameras.html', title: 'smallcameras' },
+   // { img: 'assets/images/02_smallcameras/mango.gif', url: 'projects/02_smallcameras.html', title: 'smallcameras' },
       { img: 'assets/images/02_smallcameras/eye.png', url: 'projects/02_smallcameras.html', title: 'smallcameras' },
 
     { img: 'assets/images/03_ensembale/web.gif', url: 'projects/03_ensembale.html', title: 'ensembale' , hasShadow: true},
